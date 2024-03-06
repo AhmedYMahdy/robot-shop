@@ -18,7 +18,9 @@ export class CartService {
     });
   }
 
-  getCartItems(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>('/api/cart');
+  getCartItems() {
+    this.http.get<IProduct[]>('/api/cart').subscribe(proucts => {
+      return proucts;
+    });
   }
 }
