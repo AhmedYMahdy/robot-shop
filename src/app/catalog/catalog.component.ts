@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IProduct } from './product.model';
 
 @Component({
   selector: 'bot-catalog',
@@ -196,5 +197,10 @@ export class CatalogComponent {
     return this.filter === ''
       ? this.products
       : this.products.filter((product: any) => product.category === this.filter);
+  }
+
+  hasDiscount(product: IProduct)
+  {
+    return product.discount>0;
   }
 }
