@@ -19,8 +19,8 @@ export class CartService {
   }
 
   getCartItems() {
-    this.http.get<IProduct[]>('/api/cart').subscribe(proucts => {
-      return proucts;
+    this.http.get<IProduct[]>('/api/cart').subscribe((products) => {
+      return products;
     });
   }
 }
