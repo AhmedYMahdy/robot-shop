@@ -8,30 +8,16 @@
   </div>
 
   <ul class="products">
-    <li class="product-item" *ngFor="let product of getFiltererdProducts()">
-      <div class="product" *ngIf="product">
-        <div class="product-details">
-          <img
-            [src]="getImageURL(!product ? '' : product.imageName)"
-            [alt]="product.name"
-          />
-          <div class="product-info">
-            <div class="name">{{ product.name }}</div>
-            <div class="description">{{ product.description }}</div>
-            <div class="category">Part Type: {{ product.category }}</div>
-          </div>
-        </div>
-        <div class="price">
-          <div
-            [ngClass]="{ strikethrough: hasDiscount(product) }">
-            {{ product.price | currency : "EGP" }}
-          </div>
-          <div *ngIf="product.discount > 0" class="discount">
-            {{ product.price * (1 - product.discount) | currency : "EGP" }}
-          </div>
-          <button class="cta">Buy</button>
-        </div>
-      </div>
+    <li
+      class="product-item"
+      *ngFor="let currentProduct of getFiltererdProducts()"
+    >
+      <!-- (bye) here is the name of the event created in product details and pushed here to be listined for -->
+      <!-- so here we added the event itself in the button when we pass the data  -->
+      <bot-product-details
+        [product]="currentProduct"
+        (buy)="addToCart(currentProduct)"
+      ></bot-product-details>
     </li>
   </ul>
 </div>
