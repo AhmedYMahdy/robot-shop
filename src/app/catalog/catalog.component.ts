@@ -26,6 +26,7 @@ export class CatalogComponent {
     this.productSvc.getProducts().subscribe((products) => {
       this.products = products;
     });
+
     this.route.queryParams.subscribe((params) => {
       this.filter = params['filter'] ?? '';
     });
@@ -39,9 +40,7 @@ export class CatalogComponent {
   getFiltererdProducts() {
     return this.filter === ''
       ? this.products
-      : this.products === undefined
-      ? []
-      : this.products.filter(
+      : this.products?.filter(
           (product: any) => product.category === this.filter
         );
   }
