@@ -1,0 +1,25 @@
+<div class="container">
+  <form class="form" #singInForm="ngForm" (ngSubmit)="signIn()">
+    <img class="logo" src="/assets/images/logo.png" />
+    <div class="sign-in">Sign In</div>
+    <div class="sub-text">to acquire awesome bots</div>
+
+    <!-- [value] it only used to bind the value from component to the model only (one way binding)
+      (input) causes to messy code
+       [(ngModel)] two way binding  -->
+    <!-- NOTE:  name should be the same value to be binded-->
+
+    <input name="email" required email #email="ngModel" [(ngModel)]="crednetials.email" placeholder="Email Address" type="text" />
+    <em class="error" *ngIf="email.dirty && email.errors?.['required']"> Email is required</em>
+    <em class="error" *ngIf="email.dirty && email.errors?.['email']"> Not Valid Email</em>
+   
+    <input name="password" required #password="ngModel" minlength="8" maxlength="20"  [(ngModel)]="crednetials.password" placeholder="Password" type="password" />
+    <em class="error" *ngIf="password.dirty && password.errors?.['required']"> password is required</em>
+  
+    <div class="buttons">
+      <button type="submit" [disabled]="singInForm.form.invalid" class="button cta">Sign In</button>
+    </div>
+
+    <div class="signInError" *ngIf="signInError">Sign-In Faild. Please try Again!</div>
+  </form>
+</div>
